@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Elements</title>
+    <style>
+        /* Эффект "всплеска" */
+        .plop {
+            background: rgba(255, 123, 0, 1);
+            position: relative;
+            height: 10vmin;
+            width: 30vmin;
+            border-radius: 40% 80% 50% 70%;
+            left: -38vmin;
+            top: 25vmin;
+            box-shadow: 0.5vmin 0 2vmin rgba(255, 123, 0, 0.6), -0.5vmin 0 2vmin rgba(255, 123, 0, 0.6);
+            animation: popout 3s ease-out infinite;
+        }
+
+        /* Эффект "отражения" */
+        .reflection {
+            position: relative;
+            background: rgba(255, 123, 0, 0.7);
+            width: 50vmin;
+            height: 3vmin;
+            border-radius: 50%;
+            top: -12vmin;
+            box-shadow: 0.5vmin 0 2vmin rgba(255, 123, 0, 0.6), -0.5vmin 0 2vmin rgba(255, 123, 0, 0.6);
+            animation: fade 3s ease-in-out infinite;
+        }
+
+        /* Вложенные эффекты для отражения */
+        .reflection::after, .reflection::before {
+            content: '';
+            position: absolute;
+            background: rgba(255, 123, 0, 0.4);
+            width: 50vmin;
+            height: 5vmin;
+            border-radius: 50% 90% 50% 80%;
+            box-shadow: 0.5vmin 0 2vmin rgba(255, 123, 0, 0.6), -0.5vmin 0 2vmin rgba(255, 123, 0, 0.6);
+        }
+        .reflection::after {
+            top: 2.5vmin;
+        }
+        .reflection::before {
+            width: 40vmin;
+            top: 7vmin;
+            left: 5vmin;
+            animation: tide 3s ease-out infinite;
+        }
+
+        /* Эффект "солнца" */
+        .sun {
+            background: linear-gradient(174deg, rgba(255, 0, 0, 1) 44%, rgba(255, 123, 0, 1) 63%);
+            height: 50vmin;
+            width: 50vmin;
+            margin-left: 25vmin;
+            border-radius: 50%;
+            box-shadow: 0 -0.5vmin 4vmin red;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Эффект "воды" */
+        .water {
+            position: relative;
+            background: black;
+            width: 80vmin;
+            height: 25vmin;
+            top: 26vmin;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Ключевые кадры анимаций */
+        @keyframes fade {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-0.5vmin) scaleY(0.7); }
+        }
+
+        @keyframes tide {
+            0%, 100% { transform: translateY(0.3vmin) scale(1, 1.2); }
+            50% { transform: translateY(0.5vmin) scale(1.1, 1.2); }
+        }
+
+        @keyframes popout {
+            0%, 100% { transform: translate(0, 0) scaleX(1); height: 10vmin; }
+            25% { transform: translate(0.5vmin, 0.5vmin) scaleX(0.8); }
+            50% { transform: translate(1vmin, 1vmin) scaleX(0.6); }
+            75% { transform: translate(2vmin, 3vmin) scaleX(0.3); height: 5vmin; }
+        }
+    </style>
+</head>
+<body>
+    <div class="sun">
+        <div class="water">
+            <div class="reflection"></div>
+        </div>
+    </div>
+    <div class="plop"></div>
+</body>
+</html>
